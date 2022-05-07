@@ -5,13 +5,14 @@ import (
 )
 
 type Config struct {
-	Port string `mapstructure:"PORT"`
+	Port     string `mapstructure:"PORT"`
+	MongoUri string `mapstructure:"MONGO_URI"`
 }
 
 func LoadConfig(path string) (config Config, err error) {
 
 	viper.AddConfigPath(path)
-	viper.SetConfigName("app")
+	viper.SetConfigName(".env")
 	viper.SetConfigType("env")
 	viper.AutomaticEnv()
 
