@@ -1,4 +1,4 @@
-module github.com/Adetunjii/lookapp/auth-service
+module github.com/Adetunjii/go-microservices/auth-service
 
 go 1.18
 

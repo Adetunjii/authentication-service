@@ -2,7 +2,7 @@ package db
 
 import (
 	"context"
-	"github.com/Adetunjii/lookapp/auth-service/utils"
+	"github.com/Adetunjii/go-microservices/auth-service/utils"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"

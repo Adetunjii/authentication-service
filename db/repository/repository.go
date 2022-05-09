@@ -2,12 +2,13 @@ package repository
 
 import (
 	"errors"
-	"github.com/Adetunjii/lookapp/auth-service/db"
-	"github.com/Adetunjii/lookapp/auth-service/utils"
+	"github.com/Adetunjii/go-microservices/auth-service/db"
+	"github.com/Adetunjii/go-microservices/auth-service/internal/user"
+	"github.com/Adetunjii/go-microservices/auth-service/utils"
 )
 
 type Repository struct {
-	UserRepository UserRepository
+	UserRepository user.Repository
 }
 
 func NewRepository(logger utils.AppLogger, dbInstance *db.DB) *Repository {
@@ -16,8 +17,8 @@ func NewRepository(logger utils.AppLogger, dbInstance *db.DB) *Repository {
 		logger.Fatal("no handler for this database", errors.New("invalid database"))
 	}
 
-	userRepository := UserRepository{}
-	userRepository.Collection = dbInstance.GetCollection("users")
+	userRepository := user.Repository{}
+	userRepository.Collection = dbInstance.GetCollection("user")
 
 	return &Repository{
 		userRepository,
