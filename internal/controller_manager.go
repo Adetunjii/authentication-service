@@ -8,9 +8,7 @@ type ControllerManager struct {
 
 func NewControllerManager(serviceManager *ServiceManager) *ControllerManager {
 
-	userController := user.Controller{
-		Service: serviceManager.UserService,
-	}
+	userController := user.NewUserController(serviceManager.UserService)
 
 	return &ControllerManager{
 		UserController: userController,

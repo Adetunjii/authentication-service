@@ -10,6 +10,10 @@ type ControllerInterface interface {
 	Register(c *fiber.Ctx) error
 }
 
+func NewUserController(service Service) *Controller {
+	return &Controller{Service: service}
+}
+
 func (ctrl Controller) Register(c *fiber.Ctx) error {
 	input := CreateUserDto{}
 
