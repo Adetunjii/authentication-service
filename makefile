@@ -1,2 +1,2 @@
 serve:
-	go run cmd/main.go
+	go run cmd/auth-service/main.go
