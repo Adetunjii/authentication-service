@@ -8,11 +8,20 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-type Repository struct {
+type userRepository struct {
 	*mongo.Collection
 }
 
-func (r *Repository) FindByID(id string) (UserDto, error) {
+type Repository interface {
+	FindByID(id string) (UserDto, error)
+	Create(arg CreateUserDto) (UserDto, error)
+}
+
+func NewUserRepository(collection *mongo.Collection) *userRepository {
+	return &userRepository{collection}
+}
+
+func (r *userRepository) FindByID(id string) (UserDto, error) {
 	var result UserDto
 
 	filter := bson.M{"_id": id}
@@ -29,7 +38,7 @@ func (r *Repository) FindByID(id string) (UserDto, error) {
 	return result, err
 }
 
-func (r *Repository) Create(arg CreateUserDto) (UserDto, error) {
+func (r *userRepository) Create(arg CreateUserDto) (UserDto, error) {
 	data, err := bson.Marshal(arg)
 
 	user := UserDto{}
