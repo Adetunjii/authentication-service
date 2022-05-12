@@ -17,8 +17,8 @@ func NewRepository(logger utils.AppLogger, dbInstance *db.DB) *Repository {
 		logger.Fatal("no handler for this database", errors.New("invalid database"))
 	}
 
-	userRepository := user.Repository{}
-	userRepository.Collection = dbInstance.GetCollection("user")
+	userCollection := dbInstance.GetCollection("user")
+	userRepository := user.NewUserRepository(userCollection)
 
 	return &Repository{
 		userRepository,
